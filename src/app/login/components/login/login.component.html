@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="..." class="form-group " #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+    <div class="card">
+      <div class="row">
+        <div class="col card-body">
+          <div class="form-group ">
+            <label for="email" class="">Introduce tu correo</label>
+            <input
+            type="email"
+            [(ngModel)]="model.email"
+            required
+            email
+            name="email" id="email" placeholder=" " id="email" class="form-control">
+            <div class="alert alert-danger" role="alert" *ngIf="loginForm.submitted  &&  loginForm.controls.email.invalid">
+              El email es obligatorio
+            </div>
+            <div class="form-group ">
+          </div>
+            <label for="password" class="form-group__label form-group__label--inside">Introduce tu contraseña</label>
+
+            <div class="input-group ">
+              <input [type]="passwordType" name="password" id="password" [(ngModel)]="model.password"
+              required
+              class="form-control">
+              <div class="input-group-append">
+                <fa-icon class="input-group-text" [icon]="faEye" (click)="seePassword()"></fa-icon>
+              </div>
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="loginForm.submitted  &&  loginForm.controls.password.invalid">
+                El password es obligatorio
+              </div>
+          </div>
+          <div class=" btn-group">
+            <button type="submit" class="btn btn-outline-success" >Inicia sesión</button>
+            <button type="reset" class="btn btn-outline-danger">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</body>
+
+</html>

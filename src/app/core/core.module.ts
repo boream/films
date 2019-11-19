@@ -13,6 +13,13 @@ const COMPONENTS = [
   ErrorComponent,
   HeaderComponent
 ];
+
+const MODULES = [
+  BrowserModule,
+  HttpClientModule,
+  FontAwesomeModule,
+  NgbModule
+]
 @NgModule({
   declarations: [...COMPONENTS],
   providers: [
@@ -20,12 +27,11 @@ const COMPONENTS = [
     FilmService
   ],
   imports: [
-    BrowserModule,
-    RouterModule,
-    HttpClientModule,
-    FontAwesomeModule,
-    NgbModule
+    RouterModule
   ],
-  exports: [...COMPONENTS]
+  exports: [
+    ...MODULES,
+    ...COMPONENTS
+  ]
 })
 export class CoreModule { }

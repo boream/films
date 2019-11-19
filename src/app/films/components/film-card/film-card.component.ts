@@ -1,7 +1,5 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Film } from '../../models/film';
-import { FilmService } from 'src/app/core/services/film-service.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -9,29 +7,17 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './film-card.component.html',
   styleUrls: ['./film-card.component.scss']
 })
-export class FilmCardComponent implements OnInit {
+export class FilmCardComponent {
 
-  @Input( ) pelicula: Film;
+  @Input() pelicula: Film;
+  @Output() editar: EventEmitter<Film> = new EventEmitter();
+  @Output() borrar: EventEmitter<Film> = new EventEmitter();
 
-
-  constructor( private service: FilmService,
-                private route: Router) {
-
- }
-
- public eliminarPelicula(){
-   this.service.deleteFilmById(this.pelicula.id).subscribe();
-   location.reload();
+  public eliminarPelicula() {
+    this.borrar.emit(this.pelicula)
   }
 
-  public editarPelicula(){
-    this.route.navigate([`/films/edit/${this.pelicula.id}`]);
-   //this.service.updateFilmsById(this.pelicula.id, this.pelicula).subscribe();
-    //location.reload();
-   }
-
-
-  ngOnInit() {
+  public editarPelicula() {
+    this.editar.emit(this.pelicula)
   }
-
 }

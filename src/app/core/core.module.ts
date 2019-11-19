@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -17,7 +16,6 @@ const COMPONENTS = [
 const MODULES = [
   BrowserModule,
   HttpClientModule,
-  FontAwesomeModule,
   NgbModule
 ]
 @NgModule({

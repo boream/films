@@ -5,5 +5,4 @@ export class Film {
   language: string
   image: string
   imdbUrl: string
-
 }

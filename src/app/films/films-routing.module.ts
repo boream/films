@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FilmListComponent } from './components/film-list/film-list.component';
-import { FilmFormComponent } from './components/film-form/film-form.component';
+import { FilmDetailComponent } from './components/film-detail/film-detail.component';
 
 const routes: Routes = [
   {
     path: '',
     component: FilmListComponent
   },
-  { path: 'create', component: FilmFormComponent },
-  { path: 'edit/:id', component: FilmFormComponent },
+  { path: 'create', component: FilmDetailComponent },
+  { path: 'edit/:id', component: FilmDetailComponent },
 ];
 
 @NgModule({

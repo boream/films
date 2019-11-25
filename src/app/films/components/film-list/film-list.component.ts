@@ -22,14 +22,32 @@ export class FilmListComponent implements OnInit, OnDestroy {
 
   private filmObserver: Subscription;
 
-  ngOnInit() {
-    this.filmObserver = this.filmService.getFilms().subscribe((data) => {
+  async ngOnInit() {
+    /*this.filmObserver = this.filmService.getFilms().subscribe((data) => {
       this.films = data;
-    });
+    });*/
+    /*this.filmService.getFilms()
+      .then((data) => {
+        this.films = data;
+      })
+      .catch(err => {
+        // Tratar el error
+        console.error(err)
+        this.
+      });*/
+      try {
+        debugger
+        this.films = await this.filmService.getFilms();
+        debugger
+      } catch (error) {
+        console.error(error)
+      }
+
   }
 
   ngOnDestroy() {
-    this.filmObserver.unsubscribe()
+    debugger
+    // this.filmObserver.unsubscribe()
   }
 
   onBorrarPelicula(peli: Film) {

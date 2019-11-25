@@ -14,6 +14,8 @@ export class FilmFormComponent {
 
   // private id: number = parseInt(this.route.snapshot.params.id);
 
+  private _film: Film;
+  
   onSubmit() {
     this.submit.emit(this.film);
   }

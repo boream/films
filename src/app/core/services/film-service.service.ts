@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-// import { Film } from '../films/models/film';
+import { Film } from '../../films/models/film';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
@@ -11,7 +11,8 @@ export class FilmService {
 
   public getFilms() {
     const getFilmsUrl = `${environment.apiUrl}${environment.filmResource}`;
-    return this.http.get(getFilmsUrl);
+    // return this.http.get(getFilmsUrl);
+    return this.http.get(getFilmsUrl).toPromise();
   }
 
   public deleteFilmById(id: number) {
@@ -27,7 +28,7 @@ export class FilmService {
 
   public getFilmById(id: number) {
     const getFilmByIdUrl = `${environment.apiUrl}${environment.filmResource}${id}`;
-    return this.http.get(getFilmByIdUrl);
+    return this.http.get(getFilmByIdUrl).toPromise() as Promise<Film>;
   }
 
   public createFilm(film: object) {

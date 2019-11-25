@@ -25,11 +25,19 @@ export class FilmDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     if (this.id) {
-      this.service.getFilmById(this.id).subscribe((data: Film) => {
+      /*this.service.getFilmById(this.id).subscribe((data: Film) => {
         this.miPelicula = data;
-      })
+      })*/
+      debugger
+      try {
+        this.miPelicula = await this.service.getFilmById(this.id);
+        debugger
+      } catch (error) {
+        debugger
+        console.error(error);
+      }
     }
   }
 

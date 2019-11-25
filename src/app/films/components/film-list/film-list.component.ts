@@ -10,7 +10,7 @@ import { switchMap } from 'rxjs/operators'
   templateUrl: './film-list.component.html',
   styleUrls: ['./film-list.component.scss']
 })
-export class FilmListComponent implements OnInit, OnDestroy {
+export class FilmListComponent implements OnInit {
 
   constructor(
     private filmService: FilmService,
@@ -18,35 +18,16 @@ export class FilmListComponent implements OnInit, OnDestroy {
 
   private films: object;
 
-  private films$: Observable<any>
-
-  private filmObserver: Subscription;
+  private films$: Observable<any>;
 
   ngOnInit() {
-    this.filmObserver = this.filmService.getFilms().subscribe((data) => {
-      this.films = data;
-    });
-  }
-
-  ngOnDestroy() {
-    this.filmObserver.unsubscribe()
+    this.films$ = this.filmService.getFilms();
   }
 
   onBorrarPelicula(peli: Film) {
-    // MAL
-    /*this.filmService.deleteFilmById(peli.id).subscribe(() => {
-      this.filmService.getFilms().subscribe((data) => {
-        // FIXME use operators
-        this.films = data;
-      });
-    })*/
-    const subscription =
-      this.filmService.deleteFilmById(peli.id).pipe(
-        switchMap(() => this.filmService.getFilms())
-      ).subscribe((data) => {
-        this.films = data;
-        subscription.unsubscribe();
-      });
+    this.films$ = this.filmService.deleteFilmById(peli.id).pipe(
+      switchMap(() => this.filmService.getFilms())
+    );
   }
 
   onEditarPelicula(peli: Film) {

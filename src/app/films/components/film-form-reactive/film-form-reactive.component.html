@@ -1,0 +1,59 @@
+<form class="form-group" [formGroup]="filmForm" (ngSubmit)="onSubmit(filmForm.value)">
+  <div class="card">
+    <div class="row">
+      <div class="col card-body">
+        <div class="form-group">
+          <label for="name" class="form-group__label">
+            Nombre de la película
+          </label>
+          <input type="text" id="name" placeholder=" " class="form-control" formControlName="name">
+          <div class="alert alert-danger" role="alert"
+            *ngIf="filmForm.controls.name.touched && filmForm.controls.name.invalid">
+            Este campo es obligatorio
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="gender" class="form-group__label">Genero de la película</label>
+          <div class="input-group ">
+            <input id="gender" class="form-control" formControlName="gender">
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="filmForm.submitted  &&  filmForm.controls.gender.invalid">
+            Este campo es obligatorio
+          </div>
+        </div>
+        <div class="form-group ">
+          <label for="language" class="">Idioma</label>
+          <input type="text" id="language" placeholder=" " class="form-control" formControlName="language">
+          <div class="alert alert-danger" role="alert"
+            *ngIf="filmForm.submitted  &&  filmForm.controls.language.invalid">
+            Este campo es obligatorio
+          </div>
+        </div>
+        <div class="form-group ">
+          <label for="image" class="">Url de la imagen de la película</label>
+          <input type="url" id="image" placeholder=" " class="form-control" formControlName="image">
+          <div class="alert alert-danger" role="alert" *ngIf="filmForm.submitted  &&  filmForm.controls.image.invalid">
+            Este campo es obligatorio
+          </div>
+        </div>
+        <div class="form-group ">
+          <label for="imdbUrl" class="">imdbUrl</label>
+          <input type="url" id="imdbUrl" placeholder=" " class="form-control" formControlName="imdbUrl">
+          <div class="alert alert-danger" role="alert"
+            *ngIf="filmForm.submitted  &&  filmForm.controls.imdbUrl.invalid">
+            Este campo es obligatorio
+          </div>
+        </div>
+        <div class=" btn-group">
+          <button type="submit" [disabled]="filmForm.invalid" class="btn btn-outline-success">
+            Guardar cambios</button>
+          <button type="reset" class="btn btn-outline-danger">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<p>
+  Value: {{ filmForm.controls.name.value }}
+</p>
